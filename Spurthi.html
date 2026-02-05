@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VS Code Inspired Website</title>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background: #1e1e1e;
+            --foreground: #d4d4d4;
+            --header-bg: #007acc;
+            --header-fg: #fff;
+            --feature-bg: #252526;
+            --feature-title: #569cd6;
+            --link: #3794ff;
+            --footer: #888;
+        }
+        body {
+            margin: 0;
+            font-family: 'Fira Mono', monospace;
+            background: var(--background);
+            color: var(--foreground);
+            transition: background 0.3s, color 0.3s;
+        }
+        header {
+            background: var(--header-bg);
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+            color: var(--header-fg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--header-fg);
+            color: var(--header-fg);
+            border-radius: 20px;
+            padding: 0.5rem 1.2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background 0.2s, color 0.2s;
+        }
+        .theme-toggle:hover {
+            background: var(--header-fg);
+            color: var(--header-bg);
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .feature {
+            background: var(--feature-bg);
+            border-radius: 8px;
+            margin: 1rem;
+            padding: 2rem;
+            min-width: 220px;
+            max-width: 320px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            text-align: center;
+            flex: 1 1 250px;
+        }
+        .feature h2 {
+            color: var(--feature-title);
+            margin-bottom: 0.5rem;
+        }
+        .feature p {
+            color: var(--foreground);
+        }
+        footer {
+            text-align: center;
+            color: var(--footer);
+            padding: 2rem 0 1rem 0;
+            font-size: 1rem;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 900px) {
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature {
+                max-width: 90vw;
+                min-width: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+            .feature {
+                padding: 1rem;
+            }
+        }
+        /* Light theme */
+        body.light {
+            --background: #f5f5f5;
+            --foreground: #222;
+            --header-bg: #fff;
+            --header-fg: #007acc;
+            --feature-bg: #e9e9e9;
+            --feature-title: #007acc;
+            --link: #007acc;
+            --footer: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Visual Studio Code</h1>
+        <p>The modern, open-source code editor reimagined for the web</p>
+        <button class="theme-toggle" id="themeToggle">Switch Theme</button>
+    </header>
+    <section class="features">
+        <div class="feature">
+            <h2>Lightning Fast</h2>
+            <p>Start coding instantly with a lightweight, responsive editor.</p>
+        </div>
+        <div class="feature">
+            <h2>Customizable</h2>
+            <p>Personalize your workspace with themes, extensions, and settings.</p>
+        </div>
+        <div class="feature">
+            <h2>Integrated Tools</h2>
+            <p>Debug, run, and deploy directly from your editor.</p>
+        </div>
+        <div class="feature">
+            <h2>Open Source</h2>
+            <p>Built by the community, for the community.</p>
+        </div>
+    </section>
+    <footer>
+        <p>Inspired by <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> &copy; 2026</p>
+    </footer>
+    <script>
+        // Theme switcher
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        // Load theme from localStorage
+        if (localStorage.getItem('vscode-theme') === 'light') {
+            body.classList.add('light');
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light');
+            if (body.classList.contains('light')) {
+                localStorage.setItem('vscode-theme', 'light');
+            } else {
+                localStorage.setItem('vscode-theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
